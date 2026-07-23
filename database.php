@@ -1,36 +1,38 @@
-class Database{
-    private $host;
-    private $dbName;
-    private $username;
-    private $password;
+<?php
+    class Database{
+        private $host;
+        private $dbName;
+        private $username;
+        private $password;
 
-    private $pdoInstance = null;
+        private $pdoInstance = null;
 
-    public function __construct($host, $dbName, $username, $password){
-        $this->host = 	$host;
-        $this->dbName = $dbName;
-        $this->username = $username;
-        $this->password = $password;
-    }
-
-    public function connect(){
-
-        if($this->pdoInstance !==null){
-            return $this->pdoInstance;
+        public function __construct($host, $dbName, $username, $password){
+            $this->host = 	$host;
+            $this->dbName = $dbName;
+            $this->username = $username;
+            $this->password = $password;
         }
 
-        $dsn = "mysql:host={$this->host};dbname={$this->dbName};charset=utf8mb4";
+        public function connect(){
 
-        $options = [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-            PDO::ATTR_EMULATE_PREPARES => false,
-        ];
+            if($this->pdoInstance !==null){
+                return $this->pdoInstance;
+            }
 
-        try{
-            $this->pdoInstance = new PDO($dsn, $this->username, $this->password, $options);
-            return $this->pdoInstance;}catch(PDOException $e){
-            die("Database connection failed: " . $e->getMessage());
+            $dsn = "mysql:host={$this->host};dbname={$this->dbName};charset=utf8mb4";
+
+            $options = [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+                PDO::ATTR_EMULATE_PREPARES => false,
+            ];
+
+            try{
+                $this->pdoInstance = new PDO($dsn, $this->username, $this->password, $options);
+                return $this->pdoInstance;}catch(PDOException $e){
+                die("Database connection failed: " . $e->getMessage());
+            }
         }
     }
-}
+?>
