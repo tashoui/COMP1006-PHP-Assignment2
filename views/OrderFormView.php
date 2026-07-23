@@ -1,14 +1,17 @@
 <main>
+    <?php if ($confirmationMessage): ?>
+    <p><?php echo $confirmationMessage; ?></p>
+    <?php else: ?>
     <h2>Order a Pizza from Natasha</h2>
     <form action="index.php" method="POST">
         <div>
-            <label for="fullName">Full Name:</label>
-            <input type="text" id="fullName" name="fullName" required maxlength="100">
+            <label for="customerName">Full Name:</label>
+            <input type="text" id="customerName" name="customerName" required maxlength="100">
         </div>
 
         <div>
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required
+            <label for="customerPhone">Phone Number:</label>
+            <input type="tel" id="customerPhone" name="customerPhone" required
                    pattern="[0-9\-\+\(\)\s]+" maxlength="20">
         </div>
 
@@ -53,8 +56,8 @@
         </div>
 
         <div>
-            <label for="amount-pizza">Number of Pizzas:</label>
-            <input type="number" id="amount-pizza" name="amount-pizza" min="1" max="10" required>
+            <label for="amountPizza">Number of Pizzas:</label>
+            <input type="number" id="amountPizza" name="amountPizza" min="1" max="10" required>
         </div>
 
         <div>
@@ -64,4 +67,5 @@
          
         <button type="submit">Order Now</button>
     </form>
+    <?php endif; ?>
 </main>
