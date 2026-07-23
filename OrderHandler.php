@@ -6,6 +6,8 @@
             $this->connection = $connection;
         }
 
+
+        
         public function saveOrder($customerName, $customerPhone, $pizzaType, $size, $amountOfPizzas, $details) {
             $sql = "INSERT INTO orders (customer_name, customer_phone, pizza_type, size, pizzas_requested, details) 
             VALUES (:customerName, :customerPhone, :pizzaType, :size , :amountOfPizzas, :details)";
